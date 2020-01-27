@@ -1,0 +1,49 @@
+name: pokedex
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  intl: ^0.16.1
+  flutter_icons: ^1.0.0+1
+  sliding_sheet: ^0.2.5
+  flutter_staggered_animations: ^0.1.2
+  md2_tab_indicator: ^1.0.2
+  cached_network_image: ^2.0.0
+  flutter_mobx: ^0.3.6
+  mobx: ^0.4.0+1
+  dio: ^3.0.8
+  rxdart: ^0.23.1
+  flutter_modular: ^0.3.5+1
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  mobx_codegen: ^0.4.1
+  build_runner: ^1.7.3
+  mockito: ^4.1.1
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+   - assets/images/pokeball_dark.png
+   - assets/images/pokeball.png
+
+  fonts:
+    - family: PokemonFont
+      fonts:
+        - asset: assets/fonts/ProductSans-Regular.ttf
+        - asset: assets/fonts/ProductSans-Bold.ttf
+          weight: 700
+
+scripts:
+  build: flutter pub run build_runner build
+  clean: flutter pub run build_runner clean
+  watch: flutter pub run build_runner watch  
