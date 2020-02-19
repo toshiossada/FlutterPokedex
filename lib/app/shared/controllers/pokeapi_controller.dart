@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/app/shared/models/pokeapi_model.dart';
 import 'package:pokedex/app/shared/models/pokemon_model.dart';
@@ -25,10 +27,9 @@ abstract class _PokeApiControllerBase with Store {
   @computed
   Pokemon get getPokemonAtual => _currentPokemon;
   @computed
-  dynamic get getColorCurrentPokemon =>
+  Color get getColorCurrentPokemon =>
       Utils.getColorType(type: _currentPokemon.type[0]);
 
-  @action
   getPokemon({int index}) => _pokeApi.pokemon[index];
 
   @action

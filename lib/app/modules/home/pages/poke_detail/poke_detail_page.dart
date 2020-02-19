@@ -21,6 +21,12 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
   final _pokeApiController = Modular.get<PokeApiController>();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var pokemon = _pokeApiController.getPokemon(index: widget.index);
     return Scaffold(
@@ -41,7 +47,17 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
             height: MediaQuery.of(context).size.height / 3,
           ),
           PowerInfoWidget(),
-          ImageWidget(),
+          ImageWidget(
+            index: widget.index,
+            getPokemon: ({int index}) {
+              return _pokeApiController.getPokemon(index: index);
+            },
+            onPageChanged: (int index) {
+              _pokeApiController.setPokemonAtual(index: index);
+            },
+            pokemonLenght: _pokeApiController.pokemonLength,
+            pageController: PageController(initialPage: widget.index),
+          ),
         ],
       ),
     );

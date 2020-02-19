@@ -32,11 +32,11 @@ mixin _$PokeApiController on _PokeApiControllerBase, Store {
   Pokemon get getPokemonAtual => (_$getPokemonAtualComputed ??=
           Computed<Pokemon>(() => super.getPokemonAtual))
       .value;
-  Computed<dynamic> _$getColorCurrentPokemonComputed;
+  Computed<Color> _$getColorCurrentPokemonComputed;
 
   @override
-  dynamic get getColorCurrentPokemon => (_$getColorCurrentPokemonComputed ??=
-          Computed<dynamic>(() => super.getColorCurrentPokemon))
+  Color get getColorCurrentPokemon => (_$getColorCurrentPokemonComputed ??=
+          Computed<Color>(() => super.getColorCurrentPokemon))
       .value;
 
   final _$_pokeApiAtom = Atom(name: '_PokeApiControllerBase._pokeApi');
@@ -76,16 +76,6 @@ mixin _$PokeApiController on _PokeApiControllerBase, Store {
 
   final _$_PokeApiControllerBaseActionController =
       ActionController(name: '_PokeApiControllerBase');
-
-  @override
-  dynamic getPokemon({int index}) {
-    final _$actionInfo = _$_PokeApiControllerBaseActionController.startAction();
-    try {
-      return super.getPokemon(index: index);
-    } finally {
-      _$_PokeApiControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   dynamic setPokemonAtual({int index}) {
