@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:pokedex/app/modules/home/components/body/pokemon_list/card_item/item/poke_item/poke_item_widget.dart';
 import 'package:pokedex/app/shared/controllers/pokeapi_controller.dart';
 import 'package:pokedex/app/shared/models/pokemon_model.dart';
 import 'package:pokedex/app/shared/utils/utils.dart';
+
+import 'poke_item/poke_item_widget.dart';
 
 class ItemWidget extends StatelessWidget {
   final int index;
