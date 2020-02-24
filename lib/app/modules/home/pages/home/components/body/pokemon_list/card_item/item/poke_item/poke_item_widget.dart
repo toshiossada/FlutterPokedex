@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/app/modules/home/shared/components/poke_image/poke_image_widget.dart';
+import 'package:pokedex/app/modules/home/shared/poke_background/poke_background_widget.dart';
 import 'package:pokedex/app/shared/utils/consts_app.dart';
 
 class PokeItemWidget extends StatelessWidget {
@@ -61,6 +62,10 @@ class PokeItemWidget extends StatelessWidget {
           padding: const EdgeInsets.all(4),
           child: Stack(
             children: <Widget>[
+              Align(
+                alignment: Alignment.bottomRight,
+                child: PokeBackgroundWidget(num: num, width: 80, height: 80),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -83,21 +88,8 @@ class PokeItemWidget extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Hero(
-                  child: Opacity(
-                    opacity: 0.2,
-                    child: Image.asset(
-                      ConstsApp.whitePokeball,
-                      width: 80,
-                      height: 80,
-                    ),
-                  ),
-                  tag: index,
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
                 child: PokeImageWidget(
+                  alignment: Alignment.bottomRight,
                   num: num,
                 ),
               ),

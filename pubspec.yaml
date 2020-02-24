@@ -7,18 +7,18 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  simple_animations: ^1.3.6
+  simple_animations: ^1.3.7
   intl: ^0.16.1
   flutter_icons: ^1.0.0+1
-  sliding_sheet: ^0.2.5
+  sliding_sheet: ^0.2.6
   flutter_staggered_animations: ^0.1.2
   md2_tab_indicator: ^1.0.2
-  cached_network_image: ^2.0.0
+  cached_network_image: ^2.0.0-rc
   flutter_mobx: ^1.0.1
   mobx: ^1.0.2
   dio: ^3.0.8
   rxdart: ^0.23.1
-  flutter_modular: ^0.3.5+1
+  flutter_modular: ^0.5.2
   flutter:
     sdk: flutter
 
@@ -29,13 +29,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 flutter:
   uses-material-design: true
 
   assets:
-   - assets/images/pokeball_dark.png
-   - assets/images/pokeball.png
+    - assets/images/pokeball_dark.png
+    - assets/images/pokeball.png
 
   fonts:
     - family: PokemonFont
@@ -45,6 +44,6 @@ flutter:
           weight: 700
 
 scripts:
-  build: flutter pub run build_runner build
+  build: flutter pub run build_runner build --delete-conflicting-outputs
   clean: flutter pub run build_runner clean
-  watch: flutter pub run build_runner watch  
+  watch: flutter pub run build_runner watch --delete-conflicting-outputs

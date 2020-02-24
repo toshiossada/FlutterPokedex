@@ -30,7 +30,7 @@ abstract class _PokeApiControllerBase with Store {
   Color get getColorCurrentPokemon =>
       Utils.getColorType(type: _currentPokemon.type[0]);
 
-  getPokemon({int index}) => _pokeApi.pokemon[index];
+  Pokemon getPokemon({int index}) => _pokeApi.pokemon[index];
 
   @action
   setPokemonAtual({int index}) => _currentPokemon = getPokemon(index: index);
