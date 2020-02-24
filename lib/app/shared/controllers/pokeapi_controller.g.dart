@@ -96,4 +96,11 @@ mixin _$PokeApiController on _PokeApiControllerBase, Store {
       _$_PokeApiControllerBaseActionController.endAction(_$actionInfo);
     }
   }
+
+  @override
+  String toString() {
+    final string =
+        'pokeAPI: ${pokeAPI.toString()},pokemon: ${pokemon.toString()},pokemonLength: ${pokemonLength.toString()},getPokemonAtual: ${getPokemonAtual.toString()},getColorCurrentPokemon: ${getColorCurrentPokemon.toString()}';
+    return '{$string}';
+  }
 }
