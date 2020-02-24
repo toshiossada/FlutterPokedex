@@ -22,17 +22,25 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
 
   @override
   void initState() {
+    print('Detail');
     // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('Build ${widget.index}');
     var pokemon = _pokeApiController.getPokemon(index: widget.index);
+    print('Build ${pokemon.name}');
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
-        child: AppBarDetailWidget(pokemonName: pokemon.name),
+        child: Observer(builder: (_) {
+          return AppBarDetailWidget(
+            pokemonName: pokemon.name,
+            backgoundColor: _pokeApiController.getColorCurrentPokemon,
+          );
+        }),
       ),
       body: Stack(
         children: <Widget>[
@@ -48,6 +56,9 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
           ),
           PowerInfoWidget(),
           ImageWidget(
+            getCurrentPokemon: () {
+              return _pokeApiController.getPokemonAtual.id;
+            },
             index: widget.index,
             getPokemon: ({int index}) {
               return _pokeApiController.getPokemon(index: index);

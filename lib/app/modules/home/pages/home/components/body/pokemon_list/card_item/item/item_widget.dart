@@ -30,6 +30,7 @@ class ItemWidget extends StatelessWidget {
             color: Utils.getColorType(type: pokemon.type[0]),
           ),
           onTap: () {
+            print('Teste');
             _pokeApiController.setPokemonAtual(index: index);
             Modular.to.pushNamed('/details/$index');
           },

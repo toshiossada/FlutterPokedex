@@ -6,6 +6,7 @@ class PokeImageWidget extends StatelessWidget {
   final double width;
   final double height;
   final currentPosition;
+  final Alignment alignment;
 
   const PokeImageWidget({
     Key key,
@@ -13,10 +14,12 @@ class PokeImageWidget extends StatelessWidget {
     this.width = 80,
     this.height = 80,
     this.currentPosition = true,
+    this.alignment,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
+      alignment: alignment == null ? Alignment.center : alignment,
       height: height,
       width: width,
       color: currentPosition ? null : Colors.black.withOpacity(0.5),
