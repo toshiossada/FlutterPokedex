@@ -1,0 +1,2 @@
+lib/app/modules/home/pages/poke_detail/components/poke_detail_header/poke_detail_header_widget.dart
+test/app/modules/home/pages/poke_detail/components/poke_detail_header/poke_detail_header_widget_test.dart

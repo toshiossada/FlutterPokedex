@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/app/modules/home/pages/poke_detail/components/app_bar_detail/app_bar_detail_widget.dart';
+import 'package:pokedex/app/modules/home/pages/poke_detail/components/poke_detail_header/poke_detail_header_widget.dart';
 import 'package:pokedex/app/modules/home/pages/poke_detail/components/power_info/power_info_widget.dart';
 import 'package:pokedex/app/modules/home/pages/poke_detail/poke_detail_controller.dart';
 import 'package:pokedex/app/shared/controllers/pokeapi_controller.dart';
@@ -42,56 +43,23 @@ class _PokeDetailPageState
             AppBarDetailWidget(
               tween: controller.tween,
               opacity: controller.opacityTitle,
-              backgoundColor: _pokeApiController.getColorCurrentPokemon,
             ),
-            Positioned(
-              top: (MediaQuery.of(context).size.height * 0.12) -
+            PokeDetailHeaderWidget(
+              positionTop: (MediaQuery.of(context).size.height * 0.12) -
                   controller.progress *
                       MediaQuery.of(context).size.height *
                       0.06,
-              left: 20 +
+              positionLeft: 20 +
                   controller.progress *
                       MediaQuery.of(context).size.height *
                       0.06,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        _pokeApiController.getPokemonAtual.name,
-                        style: TextStyle(
-                            fontFamily: 'PokemonFont',
-                            fontSize: 30 -
-                                controller.progress *
-                                    MediaQuery.of(context).size.height *
-                                    0.011,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      SizedBox(width: 50),
-                      Text(
-                        '#${_pokeApiController.getPokemonAtual.num}',
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            fontFamily: 'PokemonFont',
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: Utils.setTipos(
-                        types: _pokeApiController.getPokemonAtual.type,
-                        fontsize: 16,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              name: _pokeApiController.getPokemonAtual.name,
+              nameFontSize: 30 -
+                  controller.progress *
+                      MediaQuery.of(context).size.height *
+                      0.011,
+              num: _pokeApiController.getPokemonAtual.num,
+              type: _pokeApiController.getPokemonAtual.type,
             ),
             PowerInfoWidget(
               listener: controller.listener,

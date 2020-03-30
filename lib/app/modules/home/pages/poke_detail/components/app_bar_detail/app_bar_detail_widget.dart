@@ -4,13 +4,11 @@ import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 
 class AppBarDetailWidget extends StatelessWidget {
-  final Color backgoundColor;
   final double opacity;
   final MultiTrackTween tween;
 
   const AppBarDetailWidget({
     Key key,
-    this.backgoundColor,
     this.opacity,
     this.tween,
   }) : super(key: key);
@@ -19,7 +17,7 @@ class AppBarDetailWidget extends StatelessWidget {
     return AppBar(
       centerTitle: true,
       elevation: 0,
-      backgroundColor: backgoundColor,
+      backgroundColor: Colors.transparent,
       actions: <Widget>[
         Align(
           alignment: Alignment.center,
