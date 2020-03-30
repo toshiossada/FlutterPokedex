@@ -27,7 +27,10 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
-          HeaderWidget(screenWidth: screenWidth),
+          HeaderWidget(
+            screenWidth: screenWidth,
+            top: MediaQuery.of(context).padding.top - (240 / 2.9),
+          ),
           BodyWidget(),
         ],
       ),

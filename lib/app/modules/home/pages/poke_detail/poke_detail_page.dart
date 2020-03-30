@@ -5,6 +5,7 @@ import 'package:pokedex/app/modules/home/pages/poke_detail/components/app_bar_de
 import 'package:pokedex/app/modules/home/pages/poke_detail/components/power_info/power_info_widget.dart';
 import 'package:pokedex/app/modules/home/pages/poke_detail/poke_detail_controller.dart';
 import 'package:pokedex/app/shared/controllers/pokeapi_controller.dart';
+import 'package:pokedex/app/shared/utils/utils.dart';
 
 import 'components/image/image_widget.dart';
 
@@ -30,40 +31,78 @@ class _PokeDetailPageState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: Observer(builder: (_) {
-          var pokemon = _pokeApiController.getPokemonAtual;
-          return AppBarDetailWidget(
-            tween: controller.tween,
-            pokemonName: pokemon.name,
-            opacity: controller.opacityTitle,
-            backgoundColor: _pokeApiController.getColorCurrentPokemon,
-          );
-        }),
-      ),
-      body: Stack(
-        children: <Widget>[
-          Observer(
-            builder: (_) {
-              return Container(
-                color: _pokeApiController.getColorCurrentPokemon,
-              );
-            },
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height / 3,
-          ),
-          Observer(builder: (_) {
-            return PowerInfoWidget(
+    return Observer(builder: (_) {
+      return Scaffold(
+        body: Stack(
+          children: <Widget>[
+            AnimatedContainer(
+              color: _pokeApiController.getColorCurrentPokemon,
+              duration: Duration(microseconds: 300),
+            ),
+            AppBarDetailWidget(
+              tween: controller.tween,
+              opacity: controller.opacityTitle,
+              backgoundColor: _pokeApiController.getColorCurrentPokemon,
+            ),
+            Positioned(
+              top: (MediaQuery.of(context).size.height * 0.12) -
+                  controller.progress *
+                      MediaQuery.of(context).size.height *
+                      0.06,
+              left: 20 +
+                  controller.progress *
+                      MediaQuery.of(context).size.height *
+                      0.06,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        _pokeApiController.getPokemonAtual.name,
+                        style: TextStyle(
+                            fontFamily: 'PokemonFont',
+                            fontSize: 30 -
+                                controller.progress *
+                                    MediaQuery.of(context).size.height *
+                                    0.011,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      SizedBox(width: 50),
+                      Text(
+                        '#${_pokeApiController.getPokemonAtual.num}',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                            fontFamily: 'PokemonFont',
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      children: Utils.setTipos(
+                        types: _pokeApiController.getPokemonAtual.type,
+                        fontsize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            PowerInfoWidget(
               listener: controller.listener,
-            );
-          }),
-          Observer(builder: (_) {
-            return controller.opacityTitle == 1
+            ),
+            controller.opacityTitle == 1
                 ? Container()
                 : ImageWidget(
+                    paddingTop: (MediaQuery.of(context).size.height * 0.25) -
+                        controller.progress *
+                            MediaQuery.of(context).size.height *
+                            0.1,
                     tween: controller.tween,
                     progress: controller.progress,
                     opacity: controller.opacity,
@@ -80,11 +119,12 @@ class _PokeDetailPageState
                     pokemonLenght: _pokeApiController.pokemonLength,
                     pageController: PageController(
                         initialPage: _pokeApiController.pokeAPI.pokemon
-                            .indexOf(_pokeApiController.getPokemonAtual)),
-                  );
-          }),
-        ],
-      ),
-    );
+                            .indexOf(_pokeApiController.getPokemonAtual),
+                        viewportFraction: 0.5),
+                  ),
+          ],
+        ),
+      );
+    });
   }
 }

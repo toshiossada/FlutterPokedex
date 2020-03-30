@@ -4,14 +4,12 @@ import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 
 class AppBarDetailWidget extends StatelessWidget {
-  final String pokemonName;
   final Color backgoundColor;
   final double opacity;
   final MultiTrackTween tween;
 
   const AppBarDetailWidget({
     Key key,
-    this.pokemonName,
     this.backgoundColor,
     this.opacity,
     this.tween,
@@ -19,17 +17,7 @@ class AppBarDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Opacity(
-        opacity: opacity,
-        child: Text(
-          pokemonName,
-          style: TextStyle(
-            fontFamily: 'PokemonFont',
-            fontWeight: FontWeight.bold,
-            fontSize: 21,
-          ),
-        ),
-      ),
+      centerTitle: true,
       elevation: 0,
       backgroundColor: backgoundColor,
       actions: <Widget>[

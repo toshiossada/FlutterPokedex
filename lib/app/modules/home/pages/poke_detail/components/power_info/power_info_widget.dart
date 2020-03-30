@@ -13,7 +13,7 @@ class PowerInfoWidget extends StatelessWidget {
       cornerRadius: 30,
       snapSpec: const SnapSpec(
         snap: true,
-        snappings: [0.7, 1],
+        snappings: [0.6, 0.89],
         positioning: SnapPositioning.relativeToAvailableSpace,
       ),
       builder: (context, state) {

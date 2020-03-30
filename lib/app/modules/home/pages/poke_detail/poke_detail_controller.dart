@@ -33,8 +33,8 @@ abstract class _PokeDetailBase with Store {
   @action
   listener(SheetState state) {
     progress = state.progress;
-    multiple = 1 - interval(0, 0.7, progress);
+    multiple = 1 - interval(0.6, 0.87, progress);
     opacity = multiple;
-    opacityTitle = multiple = interval(0, 0.7, progress);
+    opacityTitle = multiple = interval(0.6, 0.87, progress);
   }
 }

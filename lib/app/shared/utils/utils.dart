@@ -62,4 +62,32 @@ class Utils {
         break;
     }
   }
+
+  static List<Widget> setTipos({List<String> types, double fontsize = 12}) {
+    List<Widget> lista = [];
+    types.forEach((nome) {
+      lista.add(
+        Container(
+          margin: EdgeInsets.only(bottom: 5, left: 8),
+          padding: EdgeInsets.all(0),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color.fromARGB(80, 255, 255, 255)),
+          child: Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Text(
+              nome.trim(),
+              style: TextStyle(
+                  fontFamily: 'PokemonFont',
+                  fontSize: fontsize,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+          ),
+        ),
+      );
+    });
+
+    return lista;
+  }
 }

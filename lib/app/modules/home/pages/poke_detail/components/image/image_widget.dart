@@ -15,26 +15,28 @@ class ImageWidget extends StatelessWidget {
   final double progress;
   final double opacity;
   final MultiTrackTween tween;
+  final double paddingTop;
 
-  ImageWidget(
-      {Key key,
-      this.index,
-      this.getPokemon,
-      this.onPageChanged,
-      this.pokemonLenght,
-      this.pageController,
-      this.getCurrentPokemon,
-      this.progress,
-      this.opacity,
-      this.tween})
-      : super(key: key);
+  ImageWidget({
+    Key key,
+    this.index,
+    this.getPokemon,
+    this.onPageChanged,
+    this.pokemonLenght,
+    this.pageController,
+    this.getCurrentPokemon,
+    this.progress,
+    this.opacity,
+    this.tween,
+    this.paddingTop,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Positioned(
       child: Opacity(
         opacity: opacity,
         child: Padding(
-          padding: EdgeInsets.only(top: 80 - progress * 50),
+          padding: EdgeInsets.only(top: paddingTop),
           child: SizedBox(
             height: 200,
             child: PageView.builder(
@@ -49,21 +51,23 @@ class ImageWidget extends StatelessWidget {
                   return Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
-                      ControlledAnimation(
-                        playback: Playback.LOOP,
-                        duration: tween.duration,
-                        tween: tween,
-                        builder: (context, animation) {
-                          return Transform.rotate(
-                            child: PokeBackgroundWidget(
-                              num: _pokemon.num,
-                              width: 200,
-                              height: 200,
+                      !currentPosition
+                          ? Container()
+                          : ControlledAnimation(
+                              playback: Playback.LOOP,
+                              duration: tween.duration,
+                              tween: tween,
+                              builder: (context, animation) {
+                                return Transform.rotate(
+                                  child: PokeBackgroundWidget(
+                                    num: _pokemon.num,
+                                    width: 200,
+                                    height: 200,
+                                  ),
+                                  angle: animation['rotation'],
+                                );
+                              },
                             ),
-                            angle: animation['rotation'],
-                          );
-                        },
-                      ),
                       AnimatedPadding(
                         duration: Duration(milliseconds: 500),
                         curve: Curves.bounceInOut,

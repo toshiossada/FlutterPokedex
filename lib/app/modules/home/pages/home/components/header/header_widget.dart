@@ -3,12 +3,14 @@ import 'package:pokedex/app/shared/utils/consts_app.dart';
 
 class HeaderWidget extends StatelessWidget {
   final double screenWidth;
+  final double top;
 
-  const HeaderWidget({Key key, this.screenWidth = 100}) : super(key: key);
+  const HeaderWidget({Key key, this.screenWidth = 100, @required this.top})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: -(240 / 4.2),
+      top: top,
       left: screenWidth - (240 / 1.6),
       child: Opacity(
         child: Image.asset(
