@@ -1,0 +1,2 @@
+lib/app/modules/poke_detail/pages/about/about_page.dart
+test/app/modules/poke_detail/pages/about/about_page_test.dart

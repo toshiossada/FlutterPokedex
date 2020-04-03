@@ -6,7 +6,6 @@ import 'package:pokedex/app/modules/home/pages/poke_detail/components/poke_detai
 import 'package:pokedex/app/modules/home/pages/poke_detail/components/power_info/power_info_widget.dart';
 import 'package:pokedex/app/modules/home/pages/poke_detail/poke_detail_controller.dart';
 import 'package:pokedex/app/shared/controllers/pokeapi_controller.dart';
-import 'package:pokedex/app/shared/utils/utils.dart';
 
 import 'components/image/image_widget.dart';
 
@@ -37,7 +36,17 @@ class _PokeDetailPageState
         body: Stack(
           children: <Widget>[
             AnimatedContainer(
-              color: _pokeApiController.getColorCurrentPokemon,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    _pokeApiController.getColorCurrentPokemon,
+                    _pokeApiController.getColorCurrentPokemon.withOpacity(0.7),
+                  ],
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
               duration: Duration(microseconds: 300),
             ),
             AppBarDetailWidget(
@@ -63,6 +72,7 @@ class _PokeDetailPageState
             ),
             PowerInfoWidget(
               listener: controller.listener,
+              corPokemon: _pokeApiController.getColorCurrentPokemon,
             ),
             controller.opacityTitle == 1
                 ? Container()
