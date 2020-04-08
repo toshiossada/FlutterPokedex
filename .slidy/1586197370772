@@ -1,0 +1,2 @@
+lib/app/modules/home/pages/poke_detail/components/app_bar_detail/app_bar_detail_widget.dart
+test/app/modules/home/pages/poke_detail/components/app_bar_detail/app_bar_detail_widget_test.dart

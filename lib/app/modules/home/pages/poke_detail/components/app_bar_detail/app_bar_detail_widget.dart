@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/app/modules/home/shared/poke_background/poke_background_widget.dart';
+import 'package:pokedex_modular/app/modules/home/components/poke_background/poke_background_widget.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 
 class AppBarDetailWidget extends StatelessWidget {
-  final double opacity;
+final double opacity;
   final MultiTrackTween tween;
 
   const AppBarDetailWidget({

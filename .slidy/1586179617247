@@ -1,0 +1,2 @@
+lib/app/modules/home/components/pokemon_list/card_list/card_item_controller.dart
+test/app/modules/home/components/pokemon_list/card_list/card_item_controller_test.dart

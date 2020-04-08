@@ -1,0 +1,2 @@
+lib/app/modules/home/components/app_bar/app_bar_widget.dart
+test/app/modules/home/components/app_bar/app_bar_widget_test.dart

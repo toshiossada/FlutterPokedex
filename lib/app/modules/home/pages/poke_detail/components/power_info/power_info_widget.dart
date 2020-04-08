@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/app/modules/home/pages/poke_detail/components/about/about_widget.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+
+import 'about/about_widget.dart';
 
 class PowerInfoWidget extends StatelessWidget {
   final Function(SheetState controller) listener;

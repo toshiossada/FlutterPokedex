@@ -1,0 +1,2 @@
+lib/app/moduloes/home/services/pokemon_service.dart
+test/app/moduloes/home/services/pokemon_service_test.dart

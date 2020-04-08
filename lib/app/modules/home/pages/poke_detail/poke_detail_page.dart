@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/app/modules/home/pages/poke_detail/components/app_bar_detail/app_bar_detail_widget.dart';
-import 'package:pokedex/app/modules/home/pages/poke_detail/components/poke_detail_header/poke_detail_header_widget.dart';
-import 'package:pokedex/app/modules/home/pages/poke_detail/components/power_info/power_info_widget.dart';
-import 'package:pokedex/app/modules/home/pages/poke_detail/poke_detail_controller.dart';
-import 'package:pokedex/app/shared/controllers/pokeapi_controller.dart';
+import 'package:pokedex_modular/app/modules/home/models/pokemon_model.dart';
+import 'package:pokedex_modular/app/modules/home/pages/poke_detail/poke_detail_controller.dart';
 
-import 'components/image/image_widget.dart';
+import 'components/app_bar_detail/app_bar_detail_widget.dart';
+import 'components/poke_detail_header/poke_detail_header_widget.dart';
+import 'components/power_info/power_info_widget.dart';
+import 'components/image_detail/image_detail_widget.dart';
 
 class PokeDetailPage extends StatefulWidget {
   final String title;
-  final int index;
-  const PokeDetailPage({Key key, this.title = "PokeDetail", this.index})
+  final List<PokemonModel> lstPokemons;
+  final int num;
+  const PokeDetailPage(
+      {Key key, this.title = "PokeDetail", this.lstPokemons, this.num})
       : super(key: key);
 
   @override
@@ -21,12 +23,11 @@ class PokeDetailPage extends StatefulWidget {
 
 class _PokeDetailPageState
     extends ModularState<PokeDetailPage, PokeDetailController> {
-  final _pokeApiController = Modular.get<PokeApiController>();
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    controller.setListPokemon(widget.lstPokemons);
+    controller.setCurrentPokemon(num: widget.num);
   }
 
   @override
@@ -41,8 +42,8 @@ class _PokeDetailPageState
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    _pokeApiController.getColorCurrentPokemon,
-                    _pokeApiController.getColorCurrentPokemon.withOpacity(0.7),
+                    controller.getColorCurrentPokemon,
+                    controller.getColorCurrentPokemon.withOpacity(0.7),
                   ],
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -62,21 +63,21 @@ class _PokeDetailPageState
                   controller.progress *
                       MediaQuery.of(context).size.height *
                       0.06,
-              name: _pokeApiController.getPokemonAtual.name,
+              name: controller.pokemon?.name ?? '',
               nameFontSize: 30 -
                   controller.progress *
                       MediaQuery.of(context).size.height *
                       0.011,
-              num: _pokeApiController.getPokemonAtual.num,
-              type: _pokeApiController.getPokemonAtual.type,
+              num: controller.pokemon?.id,
+              type: controller.pokemon?.types,
             ),
             PowerInfoWidget(
               listener: controller.listener,
-              corPokemon: _pokeApiController.getColorCurrentPokemon,
+              corPokemon: controller.getColorCurrentPokemon,
             ),
             controller.opacityTitle == 1
                 ? Container()
-                : ImageWidget(
+                : ImageDetailWidget(
                     paddingTop: (MediaQuery.of(context).size.height * 0.25) -
                         controller.progress *
                             MediaQuery.of(context).size.height *
@@ -84,20 +85,14 @@ class _PokeDetailPageState
                     tween: controller.tween,
                     progress: controller.progress,
                     opacity: controller.opacity,
-                    getCurrentPokemon: () {
-                      return _pokeApiController.getPokemonAtual.id;
-                    },
-                    index: widget.index,
-                    getPokemon: ({int index}) {
-                      return _pokeApiController.getPokemon(index: index);
-                    },
-                    onPageChanged: (int index) {
-                      _pokeApiController.setPokemonAtual(index: index);
-                    },
-                    pokemonLenght: _pokeApiController.pokemonLength,
+                    getCurrentPokemon: () => controller.pokemon?.id,
+                    index: controller.pokemon?.id ?? 1,
+                    pokemons: widget.lstPokemons,
+                    onPageChanged: (int index) =>
+                        controller.setCurrentPokemon(num: index),
+                    pokemonLenght: widget.lstPokemons.length,
                     pageController: PageController(
-                        initialPage: _pokeApiController.pokeAPI.pokemon
-                            .indexOf(_pokeApiController.getPokemonAtual),
+                        initialPage: controller.pokemon.id - 1,
                         viewportFraction: 0.5),
                   ),
           ],

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/app/shared/utils/utils.dart';
+import 'package:pokedex_modular/app/modules/home/models/pokemon_model.dart';
+import 'package:pokedex_modular/app/shared/utils/utils.dart';
 
 class PokeDetailHeaderWidget extends StatelessWidget {
   final double positionTop;
   final double positionLeft;
   final String name;
   final double nameFontSize;
-  final String num;
-  final List<String> type;
+  final int num;
+  final List<Type> type;
 
   const PokeDetailHeaderWidget(
       {Key key,
@@ -39,7 +40,7 @@ class PokeDetailHeaderWidget extends StatelessWidget {
               ),
               SizedBox(width: 50),
               Text(
-                '#$num',
+                '#${num.toString().padLeft(3, '0')}',
                 textAlign: TextAlign.end,
                 style: TextStyle(
                     fontFamily: 'PokemonFont',

@@ -1,0 +1,2 @@
+lib/app/modules/home/components/poke_background/poke_background_widget.dart
+test/app/modules/home/components/poke_background/poke_background_widget_test.dart

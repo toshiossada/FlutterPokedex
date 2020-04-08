@@ -1,0 +1,2 @@
+lib/app/modules/home/repositories/pokedex_repository.dart
+test/app/modules/home/repositories/pokedex_repository_test.dart
