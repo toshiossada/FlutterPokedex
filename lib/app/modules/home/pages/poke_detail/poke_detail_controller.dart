@@ -4,7 +4,6 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex_modular/app/modules/home/models/pokemon_model.dart';
-import 'package:pokedex_modular/app/modules/home/services/interfaces/pokemon_service_interface.dart';
 import 'package:pokedex_modular/app/shared/utils/utils.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';

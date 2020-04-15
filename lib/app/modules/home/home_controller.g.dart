@@ -9,6 +9,12 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
+  Computed<double> _$percentComputed;
+
+  @override
+  double get percent =>
+      (_$percentComputed ??= Computed<double>(() => super.percent)).value;
+
   final _$listPokemonAtom = Atom(name: '_HomeControllerBase.listPokemon');
 
   @override
@@ -83,7 +89,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     final string =
-        'listPokemon: ${listPokemon.toString()},loading: ${loading.toString()},infoPokemon: ${infoPokemon.toString()}';
+        'listPokemon: ${listPokemon.toString()},loading: ${loading.toString()},infoPokemon: ${infoPokemon.toString()},percent: ${percent.toString()}';
     return '{$string}';
   }
 }

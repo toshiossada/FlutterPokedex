@@ -1,0 +1,2 @@
+lib/app/modules/home/pages/poke_detail/components/power_info/tabs/status/status_widget.dart
+test/app/modules/home/pages/poke_detail/components/power_info/tabs/status/status_widget_test.dart

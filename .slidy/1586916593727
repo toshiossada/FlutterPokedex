@@ -1,0 +1,2 @@
+lib/app/modules/home/repositories/pokemon_species_repository.dart
+test/app/modules/home/repositories/pokemon_species_repository_test.dart

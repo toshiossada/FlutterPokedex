@@ -73,6 +73,7 @@ class _PokeDetailPageState
             ),
             PowerInfoWidget(
               listener: controller.listener,
+              pokemon: controller.pokemon,
               corPokemon: controller.getColorCurrentPokemon,
             ),
             controller.opacityTitle == 1

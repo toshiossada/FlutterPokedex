@@ -1,0 +1,2 @@
+lib/app/modules/home/pages/poke_detail/components/power_info/tabs/tabs_widget.dart
+test/app/modules/home/pages/poke_detail/components/power_info/tabs/tabs_widget_test.dart

@@ -1,0 +1,2 @@
+lib/app/modules/home/services/pokemon_species_service.dart
+test/app/modules/home/services/pokemon_species_service_test.dart
