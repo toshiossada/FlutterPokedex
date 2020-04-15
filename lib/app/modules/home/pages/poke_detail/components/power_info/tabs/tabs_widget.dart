@@ -70,14 +70,10 @@ class _TabsWidgetState extends ModularState<TabsWidget, TabsController>
         ),
       ),
       body: Observer(builder: (_) {
-        if (controller.pokemon == null)
-          return CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation(widget.corPokemon),
-          );
         return FutureBuilder<PokemonSpecies>(
             future: controller.pokemon,
             builder: (context, snapshot) {
-              if (snapshot.data == null)
+              if (snapshot.data == null || !snapshot.hasData)
                 return CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation(widget.corPokemon),
                 );
@@ -93,7 +89,10 @@ class _TabsWidgetState extends ModularState<TabsWidget, TabsController>
                           .first
                           .flavorText,
                     ),
-                    EvolutionWidget(),
+                    EvolutionWidget(
+                      url: snapshot.data.evolutionChain.url,
+                      corPokemon: widget.corPokemon,
+                    ),
                     StatusWidget(),
                   ],
                 );

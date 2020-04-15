@@ -1,3 +1,6 @@
+import 'package:pokedex_modular/app/modules/home/pages/poke_detail/components/power_info/tabs/evolution/evolution_controller.dart';
+import 'package:pokedex_modular/app/modules/home/services/evolution_chain_service.dart';
+import 'package:pokedex_modular/app/modules/home/repositories/evolution_chain_repository.dart';
 import 'package:pokedex_modular/app/modules/home/services/pokemon_species_service.dart';
 import 'package:pokedex_modular/app/modules/home/repositories/pokemon_species_repository.dart';
 import 'package:pokedex_modular/app/modules/home/pages/poke_detail/components/power_info/tabs/tabs_controller.dart';
@@ -12,9 +15,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex_modular/app/modules/home/home_page.dart';
 import 'package:pokedex_modular/app/shared/custom_dio/custom_dio.dart';
 
+import 'repositories/interfaces/evolution_chain_repository_interface.dart';
 import 'repositories/interfaces/pokedex_repository_interface.dart';
 import 'repositories/interfaces/pokemon_repository_interface.dart';
 import 'repositories/interfaces/pokemon_species_repository_interface.dart';
+import 'services/interfaces/evolution_chain_service_interface.dart';
 import 'services/interfaces/pokedex_service_interface.dart';
 import 'services/interfaces/pokemon_service_interface.dart';
 import 'services/interfaces/pokemon_species_service_interface.dart';
@@ -22,6 +27,14 @@ import 'services/interfaces/pokemon_species_service_interface.dart';
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => EvolutionController(
+              Modular.get<IEvolutionChainService>(),
+              Modular.get<IPokemonSpeciesService>(),
+            )),
+        Bind<IEvolutionChainService>((i) =>
+            EvolutionChainService(Modular.get<IEvolutionChainRepository>())),
+        Bind<IEvolutionChainRepository>(
+            (i) => EvolutionChainRepository(Modular.get<CustomDio>())),
         Bind<IPokemonSpeciesService>((i) =>
             PokemonSpeciesService(Modular.get<IPokemonSpeciesRepository>())),
         Bind<IPokemonSpeciesRepository>(

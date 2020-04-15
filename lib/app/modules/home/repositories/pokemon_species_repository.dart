@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex_modular/app/modules/home/models/pokemon_species_model.dart';
 
@@ -17,6 +15,13 @@ class PokemonSpeciesRepository extends Disposable
   @override
   Future<PokemonSpecies> get(int id) async {
     var response = await _dio.client.get('/pokemon-species/$id/');
+
+    return PokemonSpecies.fromMap(response.data);
+  }
+
+  @override
+  Future<PokemonSpecies> getByUrl(String url) async {
+    var response = await _dio.client.get(url);
 
     return PokemonSpecies.fromMap(response.data);
   }

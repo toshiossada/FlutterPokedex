@@ -1,0 +1,2 @@
+lib/app/modules/home/pages/poke_detail/components/power_info/tabs/evolution/evolution_controller.dart
+test/app/modules/home/pages/poke_detail/components/power_info/tabs/evolution/evolution_controller_test.dart

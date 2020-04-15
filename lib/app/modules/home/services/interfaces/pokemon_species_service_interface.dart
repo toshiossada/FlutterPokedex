@@ -2,4 +2,5 @@ import 'package:pokedex_modular/app/modules/home/models/pokemon_species_model.da
 
 abstract class IPokemonSpeciesService {
   Future<PokemonSpecies> get(int id);
+  Future<PokemonSpecies> getByUrl(String url);
 }

@@ -5,7 +5,7 @@ class PokemonSpecies {
   final int captureRate;
   final CorPokemon color;
   final List<CorPokemon> eggGroups;
-  final EvolutionChain evolutionChain;
+  final EvolutionChainPokemon evolutionChain;
   final dynamic evolvesFromSpecies;
   final List<FlavorTextEntry> flavorTextEntries;
   final List<dynamic> formDescriptions;
@@ -64,9 +64,9 @@ class PokemonSpecies {
         baseHappiness: json["base_happiness"],
         captureRate: json["capture_rate"],
         color: CorPokemon.fromMap(json["color"]),
-        eggGroups:
-            List<CorPokemon>.from(json["egg_groups"].map((x) => CorPokemon.fromMap(x))),
-        evolutionChain: EvolutionChain.fromMap(json["evolution_chain"]),
+        eggGroups: List<CorPokemon>.from(
+            json["egg_groups"].map((x) => CorPokemon.fromMap(x))),
+        evolutionChain: EvolutionChainPokemon.fromMap(json["evolution_chain"]),
         evolvesFromSpecies: json["evolves_from_species"],
         flavorTextEntries: List<FlavorTextEntry>.from(
             json["flavor_text_entries"].map((x) => FlavorTextEntry.fromMap(x))),
@@ -136,7 +136,8 @@ class CorPokemon {
     this.url,
   });
 
-  factory CorPokemon.fromJson(String str) => CorPokemon.fromMap(json.decode(str));
+  factory CorPokemon.fromJson(String str) =>
+      CorPokemon.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
@@ -151,19 +152,20 @@ class CorPokemon {
       };
 }
 
-class EvolutionChain {
+class EvolutionChainPokemon {
   final String url;
 
-  EvolutionChain({
+  EvolutionChainPokemon({
     this.url,
   });
 
-  factory EvolutionChain.fromJson(String str) =>
-      EvolutionChain.fromMap(json.decode(str));
+  factory EvolutionChainPokemon.fromJson(String str) =>
+      EvolutionChainPokemon.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory EvolutionChain.fromMap(Map<String, dynamic> json) => EvolutionChain(
+  factory EvolutionChainPokemon.fromMap(Map<String, dynamic> json) =>
+      EvolutionChainPokemon(
         url: json["url"],
       );
 
